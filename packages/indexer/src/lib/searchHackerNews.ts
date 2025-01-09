@@ -6,24 +6,21 @@ export const searchHackerNews = async (query: string): Promise<Story[]> => {
   const context = await browser.newContext();
   const page = await context.newPage();
 
-  // Navigate to Browserbase.com
+  // Navigate to Algolia HN search
   await page.goto(
     "https://hn.algolia.com/?dateRange=all&page=0&prefix=false&query=&sort=byDate&type=story"
   );
 
   console.info("Success!");
 
-  // Prompt: Enter "Next.js" in the search bar
   // Wait for search input field to be visible
   await page.waitForSelector(".SearchHeader_container input");
 
-  // Type 'Next.js' into search field
+  // Type the topic into search field
   await page.locator(".SearchHeader_container input").first().fill(query);
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  // Prompt: Extract each result title, content, date and comments numbers from the page
   // Wait for stories to load
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   await page.waitForSelector("article.Story");
 
   // Extract data from all story entries
