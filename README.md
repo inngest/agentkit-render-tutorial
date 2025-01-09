@@ -95,11 +95,11 @@ The Indexer service fetches Hacker News stories and stores them in the PostgreSQ
 
 We will set up the Indexer service as a cron job on Render. (Render offers a Cron Job service type.)
 
-This cron job is packaged as a Docker image that is configured with Playwright and its Chromium binary. For your convenience, we've made this Docker image publicly available on Docker Hub. The image name is `docker.io/wittydeveloper/inngest-render-indexer:0.4`.
+This cron job is packaged as a Docker image that is configured with Playwright and its Chromium binary. For your convenience, we've made this Docker image publicly available on Docker Hub.
 
 1. Create a new cron job on Render [using these instructions](https://render.com/docs/cronjobs#setup).
-    1. Choose the **Existing image** option and provide the following **Image URL**: `docker.io/wittydeveloper/inngest-render-indexer:0.4`.
-    2. Configure the **Schedule** to run on a daily basis: `0 0 * * *`.
+    1. Choose the **Existing image** option and provide the following **Image URL**: `docker.io/wittydeveloper/inngest-render-indexer:0.6`.
+    2. Configure the **Schedule** to run on an hourly basis: `0 * * * *`.
     3. Configure the following environment variables:
        - `DATABASE_URL`: The _internal URL_ of your PostgreSQL database ([here's how to find it](https://render.com/docs/postgresql-creating-connecting#internal-connections)).
        - `OPENAI_API_KEY`: Your OpenAI API key.
