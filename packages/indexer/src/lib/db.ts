@@ -8,6 +8,7 @@ const openai = new OpenAI({
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
+  ssl: true,
 });
 
 export async function connectToDatabase() {
